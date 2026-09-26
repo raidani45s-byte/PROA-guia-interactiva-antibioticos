@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROA Pro - Guía Interactiva y Cuestionario con Cloud Sync & Monetización</title>
+    <title>PROA Pro - Guía Interactiva, Simulador Clínico & Certificación</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -30,8 +30,8 @@
                     <i class="fa-solid fa-capsules text-2xl text-white"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-tight">PROA Pro | Guía & Cuestionario Certificado</h1>
-                    <p class="text-xs text-sky-400 font-medium">Soporte Clínico Avanzado & Sincronización en la Nube</p>
+                    <h1 class="text-xl font-bold tracking-tight">PROA Pro | Soporte Clínico & Certificación</h1>
+                    <p class="text-xs text-sky-400 font-medium">Plataforma de Optimización de Antimicrobianos & Cloud Sync</p>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
@@ -61,9 +61,13 @@
                     <i class="fa-solid fa-calculator"></i>
                     <span>Ajuste Renal & PK/PD</span>
                 </button>
+                <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span>Simulador Clínico PROA</span>
+                </button>
                 <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
                     <i class="fa-solid fa-clipboard-question"></i>
-                    <span>Cuestionario PROA (10 Preguntas)</span>
+                    <span>Cuestionario (10 Preguntas)</span>
                 </button>
                 <button onclick="switchTab('monetization')" id="tab-monetization" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
                     <i class="fa-solid fa-crown text-amber-400"></i>
@@ -189,7 +193,24 @@
             </div>
         </section>
 
-        <!-- TAB 4: CUESTIONARIO PROA (10 Preguntas con Cloud Sync) -->
+        <!-- TAB 4: SIMULADOR CLÍNICO PROA -->
+        <section id="content-simulator" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4 border-b pb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900 flex items-center">
+                            <i class="fa-solid fa-user-doctor text-sky-600 mr-2"></i> Simulador Clínico Interactivo PROA
+                        </h2>
+                        <p class="text-xs text-slate-500">Toma de decisiones asistenciales y optimización antimicrobiana guiada por evidencia</p>
+                    </div>
+                    <span id="sim-score" class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">Puntuación: 0 / 100</span>
+                </div>
+
+                <div id="sim-scenario" class="space-y-4"></div>
+            </div>
+        </section>
+
+        <!-- TAB 5: CUESTIONARIO PROA (10 Preguntas con Cloud Sync) -->
         <section id="content-quiz" class="tab-content hidden space-y-6">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
@@ -213,7 +234,7 @@
             <div id="quiz-questions-container" class="space-y-6"></div>
         </section>
 
-        <!-- TAB 5: MEMBRESÍA PRO & CERTIFICACIÓN (Reemplazo profesional del Modelo de Negocio) -->
+        <!-- TAB 6: MEMBRESÍA PRO & CERTIFICACIÓN -->
         <section id="content-monetization" class="tab-content hidden space-y-6">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto space-y-8">
                 <div class="text-center space-y-3">
@@ -372,7 +393,6 @@
             }
 
             try {
-                // RULE 1: Private user data path -> /artifacts/{appId}/users/{userId}/{collectionName}
                 const docRef = doc(db, 'artifacts', appId, 'users', userId, 'quizData', 'progress');
                 await setDoc(docRef, { 
                     answeredQuestions: answered, 
@@ -389,7 +409,6 @@
         async function loadQuizProgressFromCloud() {
             if (!db || !auth.currentUser) return;
             try {
-                // RULE 1: Private user data path
                 const docRef = doc(db, 'artifacts', appId, 'users', userId, 'quizData', 'progress');
                 const snap = await getDoc(docRef);
                 if (snap.exists()) {
@@ -672,6 +691,7 @@
 
             if (tabId === 'matrix') updateMatrixOptions();
             if (tabId === 'calculator') calculateCrCl();
+            if (tabId === 'simulator') loadSimulatorCase();
             if (tabId === 'quiz') renderQuiz();
         }
 
@@ -788,8 +808,108 @@
             `;
         }
 
+        // Simulador Clínico Logic
+        let currentSimScore = 0;
+        let simStep = 1;
+
+        function loadSimulatorCase() {
+            const container = document.getElementById('sim-scenario');
+            if (!container) return;
+            if (simStep === 1) {
+                container.innerHTML = `
+                    <div class="p-4 bg-slate-50 border rounded-lg space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-sky-700 uppercase">Caso #1: Paciente en UCI con NAV</span>
+                            <span class="text-xs text-slate-500">Paso 1 de 3</span>
+                        </div>
+                        <p class="text-sm text-slate-800">
+                            Paciente masculino de 68 años en ventilación mecánica por 8 días. Desarrolla fiebre (38.9°C), secreciones purulentas y nuevo infiltrado en radiografía de tórax. Leucocitos: 18,500/mm³. Creatinina: 1.1 mg/dL.
+                        </p>
+                        <div class="font-semibold text-xs text-slate-700">¿Cuál es la conducta empírica más congruente con los principios PROA?</div>
+                    </div>
+                    <div class="space-y-2">
+                        <button onclick="answerSim(1, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            A) Iniciar de inmediato Cefiderocol 2g IV c/8h en monoterapia.
+                        </button>
+                        <button onclick="answerSim(1, 33)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            B) Tomar cultivos y aspirado traqueal cuantitativo; iniciar cobertura empírica ajustada a la epidemiología local.
+                        </button>
+                        <button onclick="answerSim(1, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            C) Prescribir Ceftazidima/Avibactam + Colistina sin cultivos.
+                        </button>
+                    </div>
+                `;
+            } else if (simStep === 2) {
+                container.innerHTML = `
+                    <div class="p-4 bg-slate-50 border rounded-lg space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-sky-700 uppercase">Caso #1: Resultados de Microbiología</span>
+                            <span class="text-xs text-slate-500">Paso 2 de 3</span>
+                        </div>
+                        <p class="text-sm text-slate-800">
+                            El aspirado traqueal cuantifica > 10⁶ UFC/mL de <strong>Klebsiella pneumoniae</strong>. El panel rápido por PCR detecta gen de carbapenemasa <strong>bla_KPC positivo</strong>. Meropenem presenta CIM > 16 mg/L (Resistente).
+                        </p>
+                        <div class="font-semibold text-xs text-slate-700">¿Cuál es la opción dirigida óptima recomendada por el equipo PROA?</div>
+                    </div>
+                    <div class="space-y-2">
+                        <button onclick="answerSim(2, 34)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            A) Desescalar / Ajustar a Ceftazidima / Avibactam (2.5g IV c/8h en infusión de 3h) o Meropenem / Vaborbactam.
+                        </button>
+                        <button onclick="answerSim(2, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            B) Cambiar a Ceftolozano / Tazobactam 3g IV c/8h.
+                        </button>
+                    </div>
+                `;
+            } else if (simStep === 3) {
+                container.innerHTML = `
+                    <div class="p-4 bg-slate-50 border rounded-lg space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-sky-700 uppercase">Caso #1: Evaluación al Día 7</span>
+                            <span class="text-xs text-slate-500">Paso 3 de 3</span>
+                        </div>
+                        <p class="text-sm text-slate-800">
+                            Paciente afebril, extubado con éxito al día 5, tolerando vía oral y hemodinámicamente estable tras 7 días de tratamiento guiado.
+                        </p>
+                        <div class="font-semibold text-xs text-slate-700">¿Qué recomendación debe emitir el consultor PROA hoy?</div>
+                    </div>
+                    <div class="space-y-2">
+                        <button onclick="answerSim(3, 33)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            A) Dar por finalizado el ciclo antibiótico hoy al completar 7 días de evolución favorable.
+                        </button>
+                        <button onclick="answerSim(3, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
+                            B) Indicar 14 días obligatorios de Ceftazidima/Avibactam.
+                        </button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="p-6 bg-emerald-50 border border-emerald-200 rounded-xl text-center space-y-4">
+                        <i class="fa-solid fa-trophy text-4xl text-emerald-600"></i>
+                        <h3 class="text-lg font-bold text-emerald-950">¡Simulación Completada!</h3>
+                        <p class="text-sm text-emerald-800">Has obtenido una calificación de <strong>${currentSimScore} / 100</strong> en la toma de decisiones asistenciales PROA.</p>
+                        <button onclick="resetSim()" class="px-4 py-2 bg-emerald-600 text-white font-medium text-xs rounded-lg hover:bg-emerald-700 transition">Reiniciar Caso Clínico</button>
+                    </div>
+                `;
+            }
+        }
+
+        window.answerSim = function(step, points) {
+            currentSimScore += points;
+            document.getElementById('sim-score').innerText = `Puntuación: ${currentSimScore} / 100`;
+            simStep++;
+            loadSimulatorCase();
+        }
+
+        window.resetSim = function() {
+            currentSimScore = 0;
+            simStep = 1;
+            document.getElementById('sim-score').innerText = `Puntuación: 0 / 100`;
+            loadSimulatorCase();
+        }
+
         function renderQuiz() {
             const container = document.getElementById('quiz-questions-container');
+            if (!container) return;
             container.innerHTML = '';
 
             let answeredCount = 0;
@@ -862,6 +982,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             renderDrugs(antibioticsData);
             calculateCrCl();
+            loadSimulatorCase();
             renderQuiz();
         });
     </script>
