@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROA Pro - Guía Interactiva, Simulador Clínico & Certificación</title>
+    <title>PROA Pro | Soporte Clínico, Vademécum & Acceso Total Abierto</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -23,6 +23,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
+    <!-- HEADER INSTITUCIONAL -->
     <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div class="flex items-center space-x-3">
@@ -30,32 +31,35 @@
                     <i class="fa-solid fa-capsules text-2xl text-white"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-tight">PROA Pro | Soporte Clínico & Certificación</h1>
-                    <p class="text-xs text-sky-400 font-medium">Plataforma de Optimización de Antimicrobianos & Cloud Sync</p>
+                    <h1 class="text-xl font-bold tracking-tight">PROA Pro | Soporte Clínico Abierto</h1>
+                    <p class="text-xs text-sky-400 font-medium">Antibióticos de Última Generación & Guía Hospitalaria</p>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <div id="auth-status" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center space-x-2">
-                    <i class="fa-solid fa-circle-notch animate-spin text-sky-400"></i>
-                    <span>Conectando a la nube...</span>
+                <div class="text-xs bg-sky-950/80 border border-sky-600/50 text-sky-200 px-3.5 py-2 rounded-xl flex items-center space-x-2 shadow-inner">
+                    <i class="fa-solid fa-unlock-keyhole text-emerald-400 text-sm"></i>
+                    <div>
+                        <span class="font-bold text-white block">Acceso Total Abierto</span>
+                        <span class="text-[10px] text-sky-300">Herramientas 100% Libres y Gratuitas</span>
+                    </div>
                 </div>
-                <button onclick="openUpgradeModal()" class="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-xs rounded-lg shadow transition flex items-center space-x-1.5">
-                    <i class="fa-solid fa-crown text-amber-950"></i>
-                    <span>Versión PRO / Certificado</span>
+                <button onclick="openWaitingListModal()" class="px-3.5 py-2 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white font-bold text-xs rounded-xl shadow transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-list-check text-sky-200"></i>
+                    <span>Lista de Espera Cliente</span>
                 </button>
             </div>
         </div>
         
-        <!-- Navigation Tabs -->
+        <!-- NAVIGATION TABS -->
         <nav class="bg-slate-800 border-t border-slate-700 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto flex space-x-1 overflow-x-auto text-sm">
-                <button onclick="switchTab('explorer')" id="tab-explorer" class="tab-button tab-active px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
+                <button onclick="switchTab('vademecum')" id="tab-vademecum" class="tab-button tab-active px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
                     <i class="fa-solid fa-list-check"></i>
-                    <span>Vademécum de Reserva</span>
+                    <span>Vademécum & Catálogo</span>
                 </button>
                 <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
                     <i class="fa-solid fa-dna"></i>
-                    <span>Matriz por Resistencia</span>
+                    <span>Matriz de Resistencia</span>
                 </button>
                 <button onclick="switchTab('calculator')" id="tab-calculator" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
                     <i class="fa-solid fa-calculator"></i>
@@ -67,69 +71,75 @@
                 </button>
                 <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
                     <i class="fa-solid fa-clipboard-question"></i>
-                    <span>Cuestionario (10 Preguntas)</span>
-                </button>
-                <button onclick="switchTab('monetization')" id="tab-monetization" class="tab-button text-slate-400 hover:text-slate-200 px-4 py-3 font-medium whitespace-nowrap flex items-center space-x-2 transition-colors">
-                    <i class="fa-solid fa-crown text-amber-400"></i>
-                    <span>Membresía PRO & Certificación</span>
+                    <span>Autoevaluación (10 Preguntas)</span>
                 </button>
             </div>
         </nav>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
 
-        <!-- TAB 1: EXPLORADOR DE ANTIBIÓTICOS -->
-        <section id="content-explorer" class="tab-content space-y-6">
+        <!-- ENGAGEMENT BANNER -->
+        <div class="bg-gradient-to-r from-sky-900 via-slate-900 to-indigo-950 p-5 rounded-2xl shadow-lg border border-sky-500/30 text-white flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="space-y-1">
+                <div class="inline-flex items-center space-x-2 px-2.5 py-1 bg-sky-500/20 border border-sky-400/40 rounded-lg text-sky-300 text-xs font-bold">
+                    <i class="fa-solid fa-bolt text-amber-400"></i>
+                    <span>MODO ACCESO TOTAL ABIERTO - SIN RESTRICCIONES</span>
+                </div>
+                <h2 class="text-lg font-bold">¡Bienvenido a la Experiencia PROA Pro Interactiva!</h2>
+                <p class="text-xs text-slate-300 max-w-2xl">
+                    Utiliza libremente todas las herramientas de soporte a la decisión clínica, calculadoras y simuladores de guardia sin límites de uso ni suscripciones.
+                </p>
+            </div>
+            <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                <button onclick="switchTab('matrix')" class="px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition whitespace-nowrap">
+                    Consultar Guía Ahora
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: VADEMÉCUM Y CATÁLOGO DE RESERVA (TARJETAS) -->
+        <section id="content-vademecum" class="tab-content space-y-6">
             <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div class="relative w-full md:w-96">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="drug-search" onkeyup="filterDrugs()" placeholder="Buscar antibiótico, indicación o mecanismo..." class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    <input type="text" id="drug-search" onkeyup="filterDrugs()" placeholder="Buscar antibiótico, código o mecanismo..." class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
                 </div>
-                <div class="flex flex-wrap gap-2 w-full md:w-auto">
-                    <button onclick="filterCategory('all')" class="cat-btn bg-sky-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium shadow-sm hover:bg-sky-700 transition">Todos</button>
-                    <button onclick="filterCategory('gram-neg')" class="cat-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium transition">Gram Negativos Multirresistentes</button>
-                    <button onclick="filterCategory('gram-pos')" class="cat-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium transition">Gram Positivos / SARM / ERV</button>
-                    <button onclick="filterCategory('carbapenemasa')" class="cat-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium transition">Carbapenemasas (KPC/NDM/OXA)</button>
+                <div class="text-xs text-slate-500">
+                    Catálogo oficial institucional de antibióticos de reserva y última generación.
                 </div>
             </div>
 
             <div id="drugs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
-        <!-- TAB 2: MATRIZ DE SELECCIÓN POR MECANISMO -->
+        <!-- TAB 2: MATRIZ DE SELECCIÓN POR RESISTENCIA -->
         <section id="content-matrix" class="tab-content hidden space-y-6">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <h2 class="text-lg font-bold text-slate-900 mb-2 flex items-center">
                     <i class="fa-solid fa-vial-circle-check text-sky-600 mr-2"></i> Matriz de Selección Antibiótica Dirigida por Resistencia
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">Seleccione el microorganismo o mecanismo de resistencia confirmado para evaluar la pauta terapéutica óptima según guías internacionales.</p>
+                <p class="text-sm text-slate-600 mb-6">Seleccione el microorganismo y el foco infeccioso principal para evaluar la pauta terapéutica óptima ajustada al sitio de infección.</p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider"> Microorganismo / Aislado</label>
-                        <select id="matrix-pathogen" onchange="updateMatrixOptions()" class="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500">
-                            <option value="enterobacterales">Enterobacterales (E. coli, K. pneumoniae)</option>
-                            <option value="pseudomonas">Pseudomonas aeruginosa</option>
-                            <option value="acinetobacter">Acinetobacter baumannii complex</option>
-                            <option value="staph">Staphylococcus aureus</option>
-                            <option value="enterococcus">Enterococcus faecium / faecalis</option>
+                        <label class="block text-xs font-bold text-slate-700 uppercase">Microorganismo / Aislado</label>
+                        <select id="matrix-pathogen" onchange="updateMatrixResult()" class="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500">
+                            <option value="kpc">Klebsiella pneumoniae productora de KPC (Clase A)</option>
+                            <option value="mbl">Klebsiella / Enterobacterales portadora de MBL (NDM/VIM)</option>
+                            <option value="dtr">Pseudomonas aeruginosa DTR (Difícil de Tratar)</option>
+                            <option value="crab">Acinetobacter baumannii CRAB</option>
+                            <option value="mrsa">Staphylococcus aureus Resistente a Meticilina (SARM)</option>
                         </select>
                     </div>
-
                     <div class="space-y-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider"> Fenotipo / Mecanismo</label>
-                        <select id="matrix-mechanism" onchange="updateMatrixResult()" class="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500"></select>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider"> Foco Infeccioso Principal</label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase">Foco Infeccioso Principal</label>
                         <select id="matrix-site" onchange="updateMatrixResult()" class="w-full p-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500">
-                            <option value="itu">Infección Urinaria Complicada / Pielonefritis</option>
                             <option value="pneumonia">Neumonía Intrahospitalaria / NAV</option>
+                            <option value="itu">Infección Urinaria Complicada / Pielonefritis</option>
+                            <option value="bacteremia">Bacteremia / Sepsis de Origen Desconocido</option>
                             <option value="intraab">Infección Intraabdominal Complicada</option>
-                            <option value="bacteremia">Bacteremia / Infección Torrente Sanguíneo</option>
-                            <option value="skin">Piel y Partes Blandas Complicada</option>
+                            <option value="skin">Infección de Piel y Partes Blandas</option>
                         </select>
                     </div>
                 </div>
@@ -199,304 +209,99 @@
                 <div class="flex justify-between items-center mb-4 border-b pb-4">
                     <div>
                         <h2 class="text-lg font-bold text-slate-900 flex items-center">
-                            <i class="fa-solid fa-user-doctor text-sky-600 mr-2"></i> Simulador Clínico Interactivo PROA
+                            <i class="fa-solid fa-user-doctor text-sky-600 mr-2"></i> Simulador Clínico Interactivo PROA (Modo Guardia)
                         </h2>
                         <p class="text-xs text-slate-500">Toma de decisiones asistenciales y optimización antimicrobiana guiada por evidencia</p>
                     </div>
-                    <span id="sim-score" class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">Puntuación: 0 / 100</span>
                 </div>
 
                 <div id="sim-scenario" class="space-y-4"></div>
             </div>
         </section>
 
-        <!-- TAB 5: CUESTIONARIO PROA (10 Preguntas con Cloud Sync) -->
+        <!-- TAB 5: CUESTIONARIO PROA (10 Preguntas) -->
         <section id="content-quiz" class="tab-content hidden space-y-6">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
                     <h2 class="text-lg font-bold text-slate-900 flex items-center">
-                        <i class="fa-solid fa-clipboard-question text-sky-600 mr-2"></i> Cuestionario de Práctica PROA (10 Preguntas)
+                        <i class="fa-solid fa-clipboard-question text-sky-600 mr-2"></i> Autoevaluación de Práctica PROA (10 Preguntas)
                     </h2>
-                    <p class="text-xs text-slate-500">Tus respuestas se sincronizan automáticamente en tu cuenta segura en la nube.</p>
+                    <p class="text-xs text-slate-500">Pon a prueba tus conocimientos en manejo de resistencia bacteriana y optimización farmacológica.</p>
                 </div>
                 <div class="flex items-center space-x-3">
                     <div id="quiz-progress-badge" class="px-3 py-1.5 bg-sky-50 text-sky-700 border border-sky-200 rounded-lg text-xs font-bold">
                         Progreso: 0 / 10 respondidas
                     </div>
-                    <button onclick="saveQuizProgressToCloud()" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow transition flex items-center space-x-1.5">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span>Sincronizar a la Nube</span>
-                    </button>
                 </div>
             </div>
 
-            <!-- Quiz Questions Container -->
             <div id="quiz-questions-container" class="space-y-6"></div>
-        </section>
-
-        <!-- TAB 6: MEMBRESÍA PRO & CERTIFICACIÓN -->
-        <section id="content-monetization" class="tab-content hidden space-y-6">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto space-y-8">
-                <div class="text-center space-y-3">
-                    <div class="inline-flex p-3 bg-amber-100 text-amber-800 rounded-2xl shadow-inner">
-                        <i class="fa-solid fa-crown text-3xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-900">Desbloquea Todo el Potencial con PROA Pro</h2>
-                    <p class="text-sm text-slate-600 max-w-xl mx-auto">Obtén acceso ilimitado a simuladores de resistencia avanzada, créditos de formación continuada (CME) y tu certificado digital avalado.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-6 bg-slate-50 rounded-xl border border-slate-200 space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <h3 class="font-bold text-slate-900 text-base flex items-center">
-                                <i class="fa-solid fa-user-doctor text-sky-600 mr-2"></i> Plan Profesional Individual
-                            </h3>
-                            <div class="text-3xl font-extrabold text-slate-900">$19.99 <span class="text-xs font-normal text-slate-500">/ mes</span></div>
-                            <ul class="text-xs text-slate-700 space-y-2.5">
-                                <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Sincronización multidispositivo en la nube (Firebase)</span></li>
-                                <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Simulador ilimitado de casos clínicos complejos ($KPC$, $MBL$, $DTR$)</span></li>
-                                <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-600"></i><span>Certificado digital oficial PROA con código QR verificable</span></li>
-                            </ul>
-                        </div>
-                        <button onclick="openUpgradeModal()" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow transition">
-                            Suscribirme a PRO Individual
-                        </button>
-                    </div>
-
-                    <div class="p-6 bg-slate-900 text-white rounded-xl shadow-lg space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="inline-block px-2.5 py-1 bg-sky-500/20 text-sky-300 text-[10px] font-bold rounded-md uppercase tracking-wider">Hospitales & Clínicas</div>
-                            <h3 class="font-bold text-white text-base flex items-center">
-                                <i class="fa-solid fa-hospital text-sky-400 mr-2"></i> Licencia Institucional B2B
-                            </h3>
-                            <div class="text-3xl font-extrabold text-white">$299 <span class="text-xs font-normal text-slate-400">/ mes por servicio</span></div>
-                            <ul class="text-xs text-slate-300 space-y-2.5">
-                                <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Acceso multiusuario seguro para todo el personal de guardia</span></li>
-                                <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Módulo analítico institucional de consumo de antibióticos de reserva</span></li>
-                                <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Soporte prioritario y guías clínicas adaptadas al hospital</span></li>
-                            </ul>
-                        </div>
-                        <button onclick="showToast('✓ Solicitud institucional enviada. Un asesor se pondrá en contacto.')" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-xl shadow transition">
-                            Solicitar Licencia Hospitalaria
-                        </button>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main>
 
-    <div id="upgrade-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-6 relative border border-slate-200">
-            <button onclick="closeUpgradeModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600">
+    <!-- MODAL LISTA DE ESPERA CLIENTE -->
+    <div id="waiting-list-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 relative border border-slate-200">
+            <button onclick="closeWaitingListModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div class="text-center space-y-2">
-                <div class="inline-flex p-3 bg-amber-100 text-amber-700 rounded-2xl mb-1 shadow-inner">
-                    <i class="fa-solid fa-crown text-2xl"></i>
+                <div class="inline-flex p-3 bg-sky-100 text-sky-700 rounded-2xl mb-1 shadow-inner">
+                    <i class="fa-solid fa-hospital-user text-2xl"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900">PROA Pro & Certificación Académica</h3>
-                <p class="text-xs text-slate-600">Acceso ilimitado a todos los simuladores clínicos, calculadoras avanzadas y certificado digital avalado.</p>
+                <h3 class="text-lg font-bold text-slate-900">Lista de Espera Cliente (Institucional)</h3>
+                <p class="text-xs text-slate-600">
+                    Únete a la lista de espera para coordinar la implementación piloto de reportes de consumo en DDD (Dosis Diarias Definidas), auditorías hospitalarias y licencias institucionales personalizadas para tu centro de salud o servicio.
+                </p>
             </div>
 
-            <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-700">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-check text-emerald-600"></i>
-                    <span>Sincronización ilimitada en la nube con Firebase</span>
+            <form onsubmit="submitWaitingList(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-medium text-slate-700 mb-1">Nombre Completo</label>
+                    <input type="text" id="wl-name" required placeholder="Ej. Dr. Carlos Mendoza" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
                 </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-check text-emerald-600"></i>
-                    <span>Casos clínicos interactivos ilimitados</span>
+                <div>
+                    <label class="block text-xs font-medium text-slate-700 mb-1">Correo Electrónico Institucional</label>
+                    <input type="email" id="wl-email" required placeholder="correo@hospital.com" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
                 </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-check text-emerald-600"></i>
-                    <span>Certificado descargable en PDF con código QR</span>
+                <div>
+                    <label class="block text-xs font-medium text-slate-700 mb-1">Hospital / Servicio</label>
+                    <input type="text" id="wl-hospital" required placeholder="Ej. Hospital General - UCI" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
                 </div>
-            </div>
-
-            <div class="space-y-2">
-                <button onclick="simulateStripeCheckout()" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-lock text-xs"></i>
-                    <span>Suscribirse por $19.99 / mes (Stripe)</span>
+                <button type="submit" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-check text-xs"></i>
+                    <span>Inscribirme en la Lista de Espera Cliente</span>
                 </button>
-                <div class="text-[11px] text-center text-slate-400">Pago seguro procesado mediante encriptación SSL</div>
-            </div>
+            </form>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 text-center">
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 text-center mt-auto">
         <div class="max-w-7xl mx-auto px-4">
-            PROA Pro | Programa de Optimización del Uso de Antimicrobianos & Cloud Sync Firebase
+            PROA Pro | Programa de Optimización del Uso de Antimicrobianos & Acceso Total Abierto
         </div>
     </footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        let app, db, auth, userId = null;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'proa-app-default';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "AIzaSyDummyKeyForPreviewModeOnly12345",
-            authDomain: "proa-app.firebaseapp.com",
-            projectId: "proa-app"
-        };
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : undefined;
-
-        try {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-
-            const handleAuth = async () => {
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                
-                userId = auth.currentUser?.uid || crypto.randomUUID();
-                document.getElementById('auth-status').innerHTML = `
-                    <i class="fa-solid fa-cloud text-emerald-400"></i>
-                    <span class="truncate max-w-[160px]" title="${userId}">Cloud Sync (${userId})</span>
-                `;
-                
-                await loadQuizProgressFromCloud();
-            };
-
-            handleAuth().catch(err => {
-                console.warn("Firebase Auth fallback triggered:", err);
-                userId = crypto.randomUUID();
-                document.getElementById('auth-status').innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-400"></i> <span>Modo Local (Offline)</span>`;
-            });
-
-        } catch(e) {
-            console.log("Firebase initialized in preview/offline mode:", e);
-            userId = crypto.randomUUID();
-            document.getElementById('auth-status').innerHTML = `<i class="fa-solid fa-circle text-slate-500"></i> <span>Modo Local</span>`;
-        }
-
-        window.saveQuizProgressToCloud = async function() {
-            const answered = quizQuestionsData.map((q, idx) => ({
-                questionIndex: idx,
-                question: q.question,
-                correctAnswer: q.correctAnswer,
-                userAnswer: q.userAnswer || '[skipped]',
-                userIsCorrect: q.userIsCorrect || false
-            }));
-
-            if (!db || !auth.currentUser) {
-                showToast("Progreso guardado localmente (Simulación offline)");
-                return;
-            }
-
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'quizData', 'progress');
-                await setDoc(docRef, { 
-                    answeredQuestions: answered, 
-                    updatedAt: new Date().toISOString() 
-                }, { merge: true });
-                
-                showToast("✓ Progreso sincronizado exitosamente con Firebase Firestore");
-            } catch (err) {
-                console.error("Error saving to Firestore:", err);
-                showToast("Error al sincronizar con la nube");
-            }
-        };
-
-        async function loadQuizProgressFromCloud() {
-            if (!db || !auth.currentUser) return;
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'quizData', 'progress');
-                const snap = await getDoc(docRef);
-                if (snap.exists()) {
-                    const data = snap.data();
-                    if (data && data.answeredQuestions) {
-                        data.answeredQuestions.forEach((ans, idx) => {
-                            if (quizQuestionsData[idx]) {
-                                quizQuestionsData[idx].userAnswer = ans.userAnswer;
-                                quizQuestionsData[idx].userIsCorrect = ans.userIsCorrect;
-                            }
-                        });
-                        renderQuiz();
-                        showToast("✓ Datos recuperados de la nube de Firebase");
-                    }
-                }
-            } catch(e) {
-                console.log("No cloud data found yet, starting fresh.");
-            }
-        }
-    </script>
-
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        const antibioticsData = [
-            {
-                id: 'caz-avi',
-                name: 'Ceftazidima / Avibactam',
-                trade: 'Zavicefta®',
-                category: 'gram-neg',
-                badges: ['badge-kpc', 'badge-oxa'],
-                spectrumTags: ['KPC', 'OXA-48', 'Pseudomonas DTR', 'Enterobacterales BLEE'],
-                mechanism: 'Cefalosporina de 3ª gen + Inhibidor no beta-lactámico (DABCO). Inhibe carbapenemasas de clase A (KPC) y clase D (OXA-48). Inactivo frente a MBL.',
-                indications: 'Infecciones intraabdominales complicadas (IIAc), ITU complicadas/pielonefritis, Neumonía intrahospitalaria/NAV.',
-                dosing: '2.5 g (2g/0.5g) IV c/8h en infusión de 3 horas. Ajuste renal en ClCr < 50 mL/min.',
-                proaRules: 'Autorización previa obligatoria por PROA. Requiere cultivo previo.'
-            },
-            {
-                id: 'ceftolozano-tazo',
-                name: 'Ceftolozano / Tazobactam',
-                trade: 'Zerbaxa®',
-                category: 'gram-neg',
-                badges: ['badge-dtr'],
-                spectrumTags: ['Pseudomonas aeruginosa DTR', 'Enterobacterales BLEE'],
-                mechanism: 'Cefalosporina antipseudomónica potente + Inhibidor de beta-lactamasas. Resiste bombas de eflujo y pérdida de porinas OprD.',
-                indications: 'Infecciones por P. aeruginosa Difícil de Tratar (DTR), IIAc, ITUc, Neumonía intrahospitalaria.',
-                dosing: 'Dosis estándar: 1.5 g IV c/8h. Dosis Neumonía/NAV: 3 g IV c/8h en infusión de 3h.',
-                proaRules: 'Primera elección en P. aeruginosa DTR sensible. Inactivo frente a KPC, MBL u OXA-48.'
-            },
-            {
-                id: 'cefiderocol',
-                name: 'Cefiderocol',
-                trade: 'Fetroja®',
-                category: 'gram-neg',
-                badges: ['badge-kpc', 'badge-mbl', 'badge-oxa', 'badge-crab'],
-                spectrumTags: ['MBL (NDM/VIM)', 'KPC', 'OXA-48', 'Acinetobacter CRAB', 'Stenotrophomonas'],
-                mechanism: 'Cefalosporina siderófora "Caballo de Troya". Utiliza el transporte activo de hierro férrico bacteriano para penetrar la membrana.',
-                indications: 'Infecciones graves por bacterias Gram negativas aerobias multirresistentes con opciones limitadas.',
-                dosing: '2 g IV c/8h en infusión prolongada de 3 horas. Ajuste estricto según función renal.',
-                proaRules: 'Antibiótico de ultra-reserva. Exclusivo para infecciones por MBL o Acinetobacter multirresistente.'
-            },
-            {
-                id: 'meropenem-vaborbactam',
-                name: 'Meropenem / Vaborbactam',
-                trade: 'Vabomere®',
-                category: 'gram-neg',
-                badges: ['badge-kpc'],
-                spectrumTags: ['KPC', 'Enterobacterales BLEE/AmpC'],
-                mechanism: 'Carbapenem + Inhibidor basado en ácido borónico. Potente inhibición reversible de KPC y carbapenemasas de clase A.',
-                indications: 'ITU complicadas, IIAc, Neumonía intrahospitalaria por Enterobacterales resistentes a carbapenémicos.',
-                dosing: '4 g (2g/2g) IV c/8h en infusión de 3 horas.',
-                proaRules: 'Excelente opción para KPC. Inactivo frente a MBL y OXA-48.'
-            },
-            {
-                id: 'dalbavancina',
-                name: 'Dalbavancina',
-                trade: 'Dalvance®',
-                category: 'gram-pos',
-                badges: ['badge-mrsa'],
-                spectrumTags: ['SARM (Staph. aureus)', 'Staphylococcus epidermidis'],
-                mechanism: 'Lipoglycopéptido bactericida con vida media ultralarga (~14 días). Inhibe la síntesis de la pared celular.',
-                indications: 'Infecciones complejas de piel y estructuras cutáneas, osteomielitis (off-label).',
-                dosing: 'Esquema de 1 sola dosis: 1500 mg IV infundida en 30 min; o 1000 mg Día 1 + 500 mg Día 8.',
-                proaRules: 'Ideal para altas hospitalarias precoces y tratamiento domiciliario (TADI).'
-            }
+        const catalogData = [
+            { code: 'ATB-01', name: 'Meropenem', family: 'Carbapenémico', restriction: 'Restringido (PROA)', indication: 'Infecciones graves por BGN MDR, sepsis nosocomial', via: 'IV', ddd: '3 g', note: 'Reevaluar a las 72h; desescalar según cultivo', badges: ['badge-kpc'] },
+            { code: 'ATB-02', name: 'Imipenem-cilastatina', family: 'Carbapenémico', restriction: 'Restringido (PROA)', indication: 'Infecciones intraabdominales/nosocomiales graves', via: 'IV', ddd: '2 g', note: 'Riesgo de convulsiones a dosis altas', badges: [] },
+            { code: 'ATB-04', name: 'Ceftazidima / Avibactam', family: 'Cefalosporina + inhibidor', restriction: 'Uso restringido alta complejidad', indication: 'BGN MDR/XDR productores de carbapenemasas (KPC)', via: 'IV', ddd: '6 g', note: 'Requiere autorización de infectología', badges: ['badge-kpc', 'badge-oxa'] },
+            { code: 'ATB-05', name: 'Ceftolozano / Tazobactam', family: 'Cefalosporina + inhibidor', restriction: 'Uso restringido alta complejidad', indication: 'Pseudomonas aeruginosa MDR, infecciones complicadas', via: 'IV', ddd: '6 g', note: 'Confirmar función renal antes de ajustar dosis', badges: ['badge-dtr'] },
+            { code: 'ATB-06', name: 'Meropenem / Vaborbactam', family: 'Carbapenémico + inhibidor', restriction: 'Uso restringido alta complejidad', indication: 'Enterobacterias productoras de KPC', via: 'IV', ddd: '6 g', note: 'Alto costo; reservar para MDR confirmado', badges: ['badge-kpc'] },
+            { code: 'ATB-08', name: 'Cefiderocol', family: 'Cefalosporina sideróforo', restriction: 'Uso restringido alta complejidad', indication: 'BGN XDR/PDR incl. Acinetobacter, sin otra opción', via: 'IV', ddd: '6 g', note: 'Solo con confirmación microbiológica y aval infectología', badges: ['badge-kpc', 'badge-mbl', 'badge-crab'] },
+            { code: 'ATB-09', name: 'Colistina (colistimetato)', family: 'Polimixina', restriction: 'Restringido (PROA)', indication: 'BGN XDR/PDR (Acinetobacter, Pseudomonas, KPC)', via: 'IV', ddd: '3 MUI', note: 'Nefrotoxicidad; monitorizar función renal', badges: ['badge-crab'] },
+            { code: 'ATB-12', name: 'Linezolid', family: 'Oxazolidinona', restriction: 'Restringido (PROA)', indication: 'SARM, Enterococo resistente a vancomicina (VRE)', via: 'IV/VO', ddd: '1.2 g', note: 'Riesgo de mielosupresión en uso prolongado', badges: ['badge-mrsa'] },
+            { code: 'ATB-13', name: 'Daptomicina', family: 'Lipopéptido cíclico', restriction: 'Restringido (PROA)', indication: 'Bacteriemia/endocarditis por SARM, VRE', via: 'IV', ddd: '0.28 g', note: 'No usar en neumonía (inactivada por surfactante)', badges: ['badge-mrsa'] },
+            { code: 'ATB-15', name: 'Dalbavancina', family: 'Lipoglucopéptido', restriction: 'Uso restringido alta complejidad', indication: 'Infecciones piel/tejidos blandos por grampositivos MDR', via: 'IV', ddd: 'Dosis única 1500mg', note: 'Permite tratamiento ambulatorio (1-2 dosis)', badges: ['badge-mrsa'] }
         ];
 
         const quizQuestionsData = [
             {
-                question: "Se recibe el reporte de hemocultivos con aislamiento de <i>Klebsiella pneumoniae</i> portadora del gen de carbapenemasa <i>bla</i><sub>NDM-1</sub> (Metalobetalactamasa o MBL). ¿Cuál es la terapia dirigida recomendada por las guías PROA/IDSA?",
+                question: "Se recibe el reporte de hemocultivos con aislamiento de <i>Klebsiella pneumoniae</i> portadora del gen de carbapenemasa <i>bla</i><sub>NDM-1</sub> (Metalobetalactamasa o MBL). ¿Cuál es la terapia dirigida recomendada?",
                 options: [
                     "Meropenem/Vaborbactam en infusión extendida.",
                     "Cefiderocol o la combinación de Aztreonam con Ceftazidima/Avibactam.",
@@ -508,7 +313,7 @@
                 userIsCorrect: null
             },
             {
-                question: "Un paciente internado en la UCI presenta neumonía asociada a ventilación mecánica por <i>Pseudomonas aeruginosa</i> Difícil de Tratar (DTR) sensible únicamente a Ceftolozano/Tazobactam. ¿Cuál es la pauta posológica recomendada para el foco pulmonar con función renal conservada?",
+                question: "Un paciente joven en UCI presenta neumonía por <i>Pseudomonas aeruginosa</i> Difícil de Tratar (DTR) sensible únicamente a Ceftolozano/Tazobactam. ¿Cuál es la pauta posológica recomendada con función renal conservada?",
                 options: [
                     "1.5 g IV cada 8 horas en infusión de 30 minutos.",
                     "3 g IV cada 8 horas en infusión de 3 horas.",
@@ -520,134 +325,130 @@
                 userIsCorrect: null
             },
             {
-                question: "Se confirma una infección por <i>Klebsiella pneumoniae</i> productora de carbapenemasa de tipo OXA-48. ¿Qué antimicrobiano de última generación está CONTRAINDICADO debido a la inactividad de su inhibidor frente a este fenotipo?",
-                options: [
-                    "Ceftazidima/Avibactam",
-                    "Cefiderocol",
-                    "Meropenem/Vaborbactam",
-                    "Eravaciclina"
-                ],
+                question: "Se confirma infección por <i>Klebsiella pneumoniae</i> productora de <b>OXA-48</b>. ¿Qué antimicrobiano está CONTRAINDICADO debido a la inactividad de su inhibidor?",
+                options: ["Ceftazidima/Avibactam", "Cefiderocol", "Meropenem/Vaborbactam", "Eravaciclina"],
                 correctAnswer: "Meropenem/Vaborbactam.",
                 userAnswer: null,
                 userIsCorrect: null
             },
             {
-                question: "Un paciente con infección grave por <i>Acinetobacter baumannii</i> resistente a carbapenémicos (CRAB) está evaluado para tratamiento. Se contempla el uso de Eravaciclina. ¿En qué foco infeccioso NO debe utilizarse debido a sus propiedades farmacocinéticas?",
+                question: "¿Cuál es el mecanismo específico de penetración de Cefiderocol en la membrana bacteriana?",
                 options: [
-                    "Infección intraabdominal complicada",
-                    "Pielonefritis aguda o infección del tracto urinario complicada.",
-                    "Infección de piel y partes blandas",
-                    "Infecciones intrabdominales leves"
-                ],
-                correctAnswer: "Pielonefritis aguda o infección del tracto urinario complicada.",
-                userAnswer: null,
-                userIsCorrect: null
-            },
-            {
-                question: "Cefiderocol representa una nueva clase estructural de cefalosporinas sideróforas. ¿Cuál es su mecanismo específico de penetración en la membrana externa bacteriana?",
-                options: [
-                    "Difusión pasiva a través de porinas OprD.",
+                    "Difusión pasiva por porinas OprD.",
                     "Transporte activo acoplado a quelatos de hierro férrico.",
-                    "Inhibición de las bombas de eflujo MexAB-OprM.",
-                    "Destrucción directa de la membrana lipopolisacárida."
+                    "Inhibición de bombas de eflujo.",
+                    "Destrucción directa de lipopolisacáridos."
                 ],
                 correctAnswer: "Transporte activo acoplado a quelatos de hierro férrico.",
                 userAnswer: null,
                 userIsCorrect: null
             },
             {
-                question: "En la administración de Ceftazidima/Avibactam para un paciente con bacteremia por <i>Klebsiella pneumoniae</i> productora de KPC, ¿cuál es el objetivo PK/PD primordial que fundamenta su infusión en 3 horas?",
+                question: "En la administración de Ceftazidima/Avibactam para bacteremia por KPC, ¿cuál es el objetivo PK/PD primordial que fundamenta la infusión en 3 horas?",
                 options: [
-                    "Maximizar la concentración máxima pico (Cmax).",
-                    "Maximizar el tiempo que la concentración permanece sobre la CIM (%T > CIM).",
-                    "Reducir la toxicidad hepática acumulada.",
-                    "Disminuir el volumen de distribución tisular."
+                    "Maximizar el pico máximo (Cmax).",
+                    "Maximizar el tiempo que la concentración supera la CIM (%T > CIM).",
+                    "Reducir toxicidad hepática.",
+                    "Disminuir volumen de distribución."
                 ],
-                correctAnswer: "Maximizar el tiempo que la concentración permanece sobre la CIM (%T > CIM).",
+                correctAnswer: "Maximizar el tiempo que la concentración supera la CIM (%T > CIM).",
                 userAnswer: null,
                 userIsCorrect: null
             },
             {
-                question: "Un paciente joven en UCI traumatológica con sepsis por <i>Acinetobacter baumannii</i> presenta aclaramiento renal aumentado (ARC con ClCr ≥ 120 mL/min). ¿Cómo debe ajustarse la pauta de Cefiderocol (2 g c/8h estándar)?",
+                question: "Paciente joven en UCI con sepsis por <i>Acinetobacter baumannii</i> y aclaramiento renal aumentado (ClCr ≥ 120 mL/min). ¿Cómo ajustar Cefiderocol (2g c/8h estándar)?",
                 options: [
-                    "Reducir la frecuencia a cada 12 horas por riesgo de acumulación.",
-                    "Incremento de frecuencia a 2 g IV cada 6 horas.",
-                    "Mantener la misma pauta sin importar el aclaramiento.",
-                    "Suspender y cambiar a colistina."
+                    "Reducir frecuencia a cada 12h.",
+                    "Incrementar frecuencia a 2 g IV cada 6 horas.",
+                    "Mantener igual sin importar aclaramiento.",
+                    "Suspender y dar colistina."
                 ],
-                correctAnswer: "Incremento de frecuencia a 2 g IV cada 6 horas.",
+                correctAnswer: "Incrementar frecuencia a 2 g IV cada 6 horas.",
                 userAnswer: null,
                 userIsCorrect: null
             },
             {
-                question: "En el contexto de un Programa de Optimización de Antimicrobianos (PROA), ¿cuál es el escenario de mayor valor estratégico para la prescripción de Dalbavancina?",
+                question: "En un programa PROA, ¿cuál es el escenario de mayor valor estratégico para prescribir Dalbavancina?",
                 options: [
-                    "Tratamiento empírico de neumonía asociada a ventilación mecánica.",
-                    "Terapia de alta hospitalaria precoz e infecciones graves de piel y partes blandas por SARM.",
-                    "Infecciones urinarias por enterobacterias BLEE.",
-                    "Meningitis bacteriana aguda nosocomial."
+                    "Neumonía asociada a ventilación mecánica grave.",
+                    "Terapia de alta precoz e infecciones complejas de piel y partes blandas por SARM.",
+                    "Infección urinaria por BLEE.",
+                    "Meningitis nosocomial."
                 ],
-                correctAnswer: "Terapia de alta hospitalaria precoz e infecciones graves de piel y partes blandas por SARM.",
+                correctAnswer: "Terapia de alta precoz e infecciones complejas de piel y partes blandas por SARM.",
                 userAnswer: null,
                 userIsCorrect: null
             },
             {
-                question: "Durante el 'Timeout PROA' a las 48-72 horas, se recibe el informe microbiológico definitivo de hemocultivos: <i>Klebsiella pneumoniae</i> sensible a Meropenem (CIM ≤ 1 mg/L). El paciente recibía Ceftazidima/Avibactam empírico. ¿Qué conducta es la más adecuada?",
+                question: "Durante el 'Timeout PROA' a las 72h, hemocultivos confirman <i>Klebsiella pneumoniae</i> sensible a Meropenem (CIM ≤ 1 mg/L). El paciente recibía Ceftazidima/Avibactam. ¿Qué conducta es adecuada?",
                 options: [
-                    "Continuar Ceftazidima/Avibactam hasta completar 14 días.",
+                    "Continuar Ceftazidima/Avibactam 14 días.",
                     "Desescalar a Meropenem en infusión extendida de 3 horas.",
-                    "Suspender todo tratamiento antimicrobiano de inmediato.",
-                    "Adicionar Colistina para sinergia."
+                    "Suspender antibiótico por completo.",
+                    "Adicionar Colistina."
                 ],
                 correctAnswer: "Desescalar a Meropenem en infusión extendida de 3 horas.",
                 userAnswer: null,
                 userIsCorrect: null
             },
             {
-                question: "Se aísla <i>Enterococcus faecium</i> en tres frascos de hemocultivo. El análisis fenotípico y molecular confirma resistencia a Vancomicina fenotipo vanA (ERV). ¿Cuál es el tratamiento parenteral preferido de primera línea?",
+                question: "Se aísla <i>Enterococcus faecium</i> resistente a Vancomicina fenotipo vanA (ERV). ¿Cuál es el tratamiento parenteral preferido de primera línea?",
                 options: [
                     "Ampicilina a dosis altas",
                     "Daptomicina a dosis alta (10-12 mg/kg/día).",
                     "Teicoplanina estándar",
-                    "Ceftriaxona en monoterapia"
+                    "Ceftriaxona"
                 ],
                 correctAnswer: "Daptomicina a dosis alta (10-12 mg/kg/día).",
+                userAnswer: null,
+                userIsCorrect: null
+            },
+            {
+                question: "¿Qué ventaja principal ofrece Linezolid frente a Vancomicina en infecciones pulmonares documentadas por SARM?",
+                options: [
+                    "Menor costo unitario",
+                    "Excelente penetración en parénquima pulmonar y líquido alveolar.",
+                    "Administración única mensual",
+                    "Ausencia total de efectos adversos"
+                ],
+                correctAnswer: "Excelente penetración en parénquima pulmonar y líquido alveolar.",
                 userAnswer: null,
                 userIsCorrect: null
             }
         ];
 
-        function renderDrugs(drugs) {
+        function renderCatalog(drugs) {
             const grid = document.getElementById('drugs-grid');
             grid.innerHTML = '';
             drugs.forEach(drug => {
-                const badgeHTML = drug.spectrumTags.map(tag => {
-                    let badgeClass = 'bg-slate-100 text-slate-700 border-slate-300';
-                    if (tag.includes('KPC')) badgeClass = 'badge-kpc';
-                    else if (tag.includes('MBL') || tag.includes('NDM')) badgeClass = 'badge-mbl';
-                    else if (tag.includes('OXA')) badgeClass = 'badge-oxa';
-                    else if (tag.includes('DTR')) badgeClass = 'badge-dtr';
-                    else if (tag.includes('CRAB')) badgeClass = 'badge-crab';
-                    else if (tag.includes('SARM') || tag.includes('MRSA')) badgeClass = 'badge-mrsa';
-                    return `<span class="px-2 py-0.5 rounded text-[11px] font-semibold border ${badgeClass}">${tag}</span>`;
+                const badgeHTML = drug.badges.map(tag => {
+                    let badgeClass = 'badge-kpc';
+                    if (tag.includes('mbl')) badgeClass = 'badge-mbl';
+                    else if (tag.includes('oxa')) badgeClass = 'badge-oxa';
+                    else if (tag.includes('dtr')) badgeClass = 'badge-dtr';
+                    else if (tag.includes('crab')) badgeClass = 'badge-crab';
+                    else if (tag.includes('mrsa')) badgeClass = 'badge-mrsa';
+                    return `<span class="px-2 py-0.5 rounded text-[11px] font-semibold border uppercase ${badgeClass}">${tag.replace('badge-', '')}</span>`;
                 }).join(' ');
 
                 grid.innerHTML += `
                     <div class="bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
                         <div class="p-5 space-y-3">
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-base">${drug.name}</h3>
-                                <span class="text-xs text-sky-600 font-medium">${drug.trade}</span>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-base">${drug.name}</h3>
+                                    <span class="text-xs text-sky-600 font-medium">${drug.family} (${drug.code})</span>
+                                </div>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 text-[10px] font-bold rounded">${drug.restriction}</span>
                             </div>
                             <div class="flex flex-wrap gap-1.5 py-1">${badgeHTML}</div>
                             <div class="text-xs text-slate-600 space-y-2">
-                                <p><strong>Mecanismo:</strong> ${drug.mechanism}</p>
-                                <p><strong>Indicaciones:</strong> ${drug.indications}</p>
-                                <p><strong>Dosificación:</strong> ${drug.dosing}</p>
+                                <p><strong>Indicación:</strong> ${drug.indication}</p>
+                                <p><strong>Vía / DDD:</strong> Vía ${drug.via} | DDD: ${drug.ddd}</p>
                             </div>
                         </div>
                         <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 rounded-b-xl text-[11px] text-slate-600">
-                            <span class="font-bold text-amber-700"><i class="fa-solid fa-triangle-exclamation mr-1"></i> PROA:</span> ${drug.proaRules}
+                            <span class="font-bold text-amber-700"><i class="fa-solid fa-triangle-exclamation mr-1"></i> PROA:</span> ${drug.note}
                         </div>
                     </div>
                 `;
@@ -656,26 +457,13 @@
 
         function filterDrugs() {
             const query = document.getElementById('drug-search').value.toLowerCase();
-            const filtered = antibioticsData.filter(d => 
+            const filtered = catalogData.filter(d => 
                 d.name.toLowerCase().includes(query) ||
-                d.trade.toLowerCase().includes(query) ||
-                d.mechanism.toLowerCase().includes(query) ||
-                d.spectrumTags.some(t => t.toLowerCase().includes(query))
+                d.code.toLowerCase().includes(query) ||
+                d.family.toLowerCase().includes(query) ||
+                d.indication.toLowerCase().includes(query)
             );
-            renderDrugs(filtered);
-        }
-
-        function filterCategory(cat) {
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('bg-sky-600', 'text-white');
-                btn.classList.add('bg-slate-100', 'text-slate-700');
-            });
-            event.target.classList.remove('bg-slate-100', 'text-slate-700');
-            event.target.classList.add('bg-sky-600', 'text-white');
-
-            if (cat === 'all') renderDrugs(antibioticsData);
-            else if (cat === 'carbapenemasa') renderDrugs(antibioticsData.filter(d => d.badges.includes('badge-kpc') || d.badges.includes('badge-mbl') || d.badges.includes('badge-oxa')));
-            else renderDrugs(antibioticsData.filter(d => d.category === cat));
+            renderCatalog(filtered);
         }
 
         function switchTab(tabId) {
@@ -689,78 +477,53 @@
             activeBtn.classList.add('tab-active');
             activeBtn.classList.remove('text-slate-400');
 
-            if (tabId === 'matrix') updateMatrixOptions();
+            if (tabId === 'matrix') updateMatrixResult();
             if (tabId === 'calculator') calculateCrCl();
             if (tabId === 'simulator') loadSimulatorCase();
             if (tabId === 'quiz') renderQuiz();
         }
 
-        const mechanismsByPathogen = {
-            'enterobacterales': [
-                { id: 'kpc', name: 'Productor de KPC (Clase A)' },
-                { id: 'mbl', name: 'Productor de MBL / NDM (Clase B)' },
-                { id: 'oxa48', name: 'Productor de OXA-48 (Clase D)' }
-            ],
-            'pseudomonas': [
-                { id: 'dtr', name: 'Pseudomonas DTR (Difícil de Tratar)' }
-            ],
-            'acinetobacter': [
-                { id: 'crab', name: 'Acinetobacter baumannii CRAB' }
-            ],
-            'staph': [
-                { id: 'mrsa', name: 'Staphylococcus aureus Resistente a Meticilina (SARM)' }
-            ],
-            'enterococcus': [
-                { id: 'vre-faecium', name: 'Enterococcus faecium Resistente a Vancomicina (ERV)' }
-            ]
-        };
-
-        function updateMatrixOptions() {
-            const pathogen = document.getElementById('matrix-pathogen').value;
-            const mechSelect = document.getElementById('matrix-mechanism');
-            mechSelect.innerHTML = '';
-            mechanismsByPathogen[pathogen].forEach(m => {
-                mechSelect.innerHTML += `<option value="${m.id}">${m.name}</option>`;
-            });
-            updateMatrixResult();
-        }
-
         function updateMatrixResult() {
-            const mech = document.getElementById('matrix-mechanism').value;
+            const pathogen = document.getElementById('matrix-pathogen').value;
+            const site = document.getElementById('matrix-site').value;
             const container = document.getElementById('matrix-result-container');
+            
             let rec = { first: '', second: '', avoid: '', notes: '' };
 
-            if (mech === 'kpc') {
-                rec.first = 'Ceftazidima / Avibactam o Meropenem / Vaborbactam (infusión 3h)';
-                rec.second = 'Cefiderocol o Eravaciclina';
-                rec.avoid = 'Carbapenémicos en monoterapia, Colistina';
-                rec.notes = 'Preferir infusión extendida de 3 horas para maximizar %T > CIM.';
-            } else if (mech === 'mbl') {
-                rec.first = 'Cefiderocol o Combinación Aztreonam + Ceftazidima/Avibactam';
-                rec.second = 'Colistina + Aztreonam';
-                rec.avoid = 'Ceftazidima/Avibactam solo, Meropenem/Vaborbactam';
-                rec.notes = 'Aztreonam resiste MBL y avibactam protege contra BLEE/KPC acompañantes.';
-            } else if (mech === 'dtr') {
-                rec.first = 'Ceftolozano / Tazobactam (3g c/8h en neumonía)';
-                rec.second = 'Cefiderocol o Ceftazidima/Avibactam';
-                rec.avoid = 'Piperacilina/Tazo o Cefepima empírica';
-                rec.notes = 'Dosis alta recomendada para infecciones pulmonares graves.';
-            } else if (mech === 'crab') {
-                rec.first = 'Ampicilina / Sulbactam a dosis alta + 2º agente o Cefiderocol';
-                rec.second = 'Minociclina / Eravaciclina / Colistina';
-                rec.avoid = 'Carbapenémicos solos';
-                rec.notes = 'Requiere terapia combinada basada en sulbactam.';
-            } else if (mech === 'mrsa') {
-                rec.first = 'Vancomicina (AUC 400-600) o Daptomicina (8-10 mg/kg)';
-                rec.second = 'Linezolid (en neumonía) o Dalbavancina';
-                rec.avoid = 'Beta-lactámicos convencionales';
-                rec.notes = 'Daptomicina es de elección en bacteremia por SARM.';
+            if (pathogen === 'kpc') {
+                rec.first = 'Ceftazidima / Avibactam o Meropenem / Vaborbactam en infusión extendida de 3 horas.';
+                rec.second = 'Cefiderocol o Eravaciclina (si foco abdominal).';
+                rec.avoid = 'Carbapenémicos en monoterapia, Colistina sola.';
+                rec.notes = 'Asegurar infusión prolongada de 3 horas para optimizar el tiempo sobre la CIM (%T > CIM).';
+            } else if (pathogen === 'mbl') {
+                rec.first = 'Cefiderocol o Combinación de Aztreonam + Ceftazidima/Avibactam.';
+                rec.second = 'Colistina + Aztreonam.';
+                rec.avoid = 'Ceftazidima/Avibactam en monoterapia, Meropenem/Vaborbactam.';
+                rec.notes = 'Aztreonam es estable frente a MBL, y avibactam neutraliza las BLEE/KPC acompañantes.';
+            } else if (pathogen === 'dtr') {
+                rec.first = 'Ceftolozano / Tazobactam (3 g IV c/8h en Neumonía/NAV).';
+                rec.second = 'Cefiderocol o Ceftazidima/Avibactam.';
+                rec.avoid = 'Piperacilina/Tazobactam o Cefepima empírica.';
+                rec.notes = 'Pseudomonas DTR requiere dosis elevadas y infusión extendida.';
+            } else if (pathogen === 'crab') {
+                rec.first = 'Ampicilina / Sulbactam a dosis alta (9-12g sulbactam/día) + 2º agente o Cefiderocol.';
+                rec.second = 'Colistina + Minociclina / Eravaciclina.';
+                rec.avoid = 'Monoterapia con carbapenémicos.';
+                rec.notes = 'Acinetobacter CRAB exige terapia combinada basada en sulbactam.';
             } else {
-                rec.first = 'Daptomicina a dosis alta (10-12 mg/kg/día) o Linezolid';
-                rec.second = 'Tedizolid u Oritavancina';
-                rec.avoid = 'Vancomicina';
-                rec.notes = 'Asegurar dosis elevadas de daptomicina en enterococo resistente.';
+                rec.first = 'Vancomicina (AUC 400-600) o Daptomicina (8-10 mg/kg/día).';
+                rec.second = 'Linezolid (en neumonía) o Dalbavancina.';
+                rec.avoid = 'Beta-lactámicos convencionales.';
+                rec.notes = 'Daptomicina es de elección en bacteremia por SARM; Linezolid penetra mejor en pulmón.';
             }
+
+            // Site-specific tailoring modifier note
+            let siteNote = "";
+            if (site === 'pneumonia') siteNote = "<strong>Foco Pulmonar:</strong> Verificar penetración alveolar y evitar daptomicina (inactivada por surfactante).";
+            else if (site === 'itu') siteNote = "<strong>Foco Urinario:</strong> Considerar eliminación renal del fármaco (evitar tigeciclina/eravaciclina en ITU baja/alta).";
+            else if (site === 'bacteremia') siteNote = "<strong>Bacteremia:</strong> Evaluar retirada precoz de catéteres y control de foco a las 48-72h.";
+            else if (site === 'intraab') siteNote = "<strong>Foco Intraabdominal:</strong> Asegurar cobertura anaerobia complementaria si el agente de reserva no la cubre de forma completa.";
+            else if (site === 'skin') siteNote = "<strong>Piel y Partes Blandas:</strong> Considerar monodosis ambulatorias (Dalbavancina) si el paciente cumple criterios.";
 
             container.innerHTML = `
                 <div class="space-y-4">
@@ -778,8 +541,9 @@
                             <div class="text-sm font-semibold text-rose-950 mt-1">${rec.avoid}</div>
                         </div>
                     </div>
-                    <div class="p-4 bg-slate-100 rounded-lg text-xs text-slate-700">
-                        <strong>Perla Clínica:</strong> ${rec.notes}
+                    <div class="p-4 bg-slate-100 rounded-lg text-xs text-slate-700 space-y-1">
+                        <div><strong>Perla Clínica PROA:</strong> ${rec.notes}</div>
+                        <div class="text-sky-800 pt-1 border-t border-slate-200 mt-1">${siteNote}</div>
                     </div>
                 </div>
             `;
@@ -808,8 +572,6 @@
             `;
         }
 
-        // Simulador Clínico Logic
-        let currentSimScore = 0;
         let simStep = 1;
 
         function loadSimulatorCase() {
@@ -823,87 +585,51 @@
                             <span class="text-xs text-slate-500">Paso 1 de 3</span>
                         </div>
                         <p class="text-sm text-slate-800">
-                            Paciente masculino de 68 años en ventilación mecánica por 8 días. Desarrolla fiebre (38.9°C), secreciones purulentas y nuevo infiltrado en radiografía de tórax. Leucocitos: 18,500/mm³. Creatinina: 1.1 mg/dL.
+                            Paciente masculino de 68 años en ventilación mecánica por 8 días. Desarrolla fiebre (38.9°C), secreciones purulentas y nuevo infiltrado pulmonar. Leucocitos: 18,500/mm³.
                         </p>
-                        <div class="font-semibold text-xs text-slate-700">¿Cuál es la conducta empírica más congruente con los principios PROA?</div>
+                        <div class="font-semibold text-xs text-slate-700">¿Cuál es la conducta empírica más congruente con PROA?</div>
                     </div>
                     <div class="space-y-2">
-                        <button onclick="answerSim(1, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            A) Iniciar de inmediato Cefiderocol 2g IV c/8h en monoterapia.
-                        </button>
-                        <button onclick="answerSim(1, 33)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            B) Tomar cultivos y aspirado traqueal cuantitativo; iniciar cobertura empírica ajustada a la epidemiología local.
-                        </button>
-                        <button onclick="answerSim(1, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            C) Prescribir Ceftazidima/Avibactam + Colistina sin cultivos.
-                        </button>
+                        <button onclick="answerSim(1)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">A) Iniciar Cefiderocol 2g IV c/8h sin cultivos.</button>
+                        <button onclick="answerSim(1)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">B) Tomar cultivos respiratorios cuantitativos e iniciar cobertura empírica ajustada a la epidemiología local.</button>
                     </div>
                 `;
             } else if (simStep === 2) {
                 container.innerHTML = `
                     <div class="p-4 bg-slate-50 border rounded-lg space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-sky-700 uppercase">Caso #1: Resultados de Microbiología</span>
+                            <span class="text-xs font-bold text-sky-700 uppercase">Caso #1: Resultados Microbiológicos</span>
                             <span class="text-xs text-slate-500">Paso 2 de 3</span>
                         </div>
                         <p class="text-sm text-slate-800">
-                            El aspirado traqueal cuantifica > 10⁶ UFC/mL de <strong>Klebsiella pneumoniae</strong>. El panel rápido por PCR detecta gen de carbapenemasa <strong>bla_KPC positivo</strong>. Meropenem presenta CIM > 16 mg/L (Resistente).
+                            Se aisla <i>Klebsiella pneumoniae</i> con PCR positiva para <strong>KPC</strong>. Meropenem CIM &gt; 16 mg/L.
                         </p>
-                        <div class="font-semibold text-xs text-slate-700">¿Cuál es la opción dirigida óptima recomendada por el equipo PROA?</div>
+                        <div class="font-semibold text-xs text-slate-700">¿Cuál es la opción dirigida óptima?</div>
                     </div>
                     <div class="space-y-2">
-                        <button onclick="answerSim(2, 34)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            A) Desescalar / Ajustar a Ceftazidima / Avibactam (2.5g IV c/8h en infusión de 3h) o Meropenem / Vaborbactam.
-                        </button>
-                        <button onclick="answerSim(2, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            B) Cambiar a Ceftolozano / Tazobactam 3g IV c/8h.
-                        </button>
-                    </div>
-                `;
-            } else if (simStep === 3) {
-                container.innerHTML = `
-                    <div class="p-4 bg-slate-50 border rounded-lg space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-sky-700 uppercase">Caso #1: Evaluación al Día 7</span>
-                            <span class="text-xs text-slate-500">Paso 3 de 3</span>
-                        </div>
-                        <p class="text-sm text-slate-800">
-                            Paciente afebril, extubado con éxito al día 5, tolerando vía oral y hemodinámicamente estable tras 7 días de tratamiento guiado.
-                        </p>
-                        <div class="font-semibold text-xs text-slate-700">¿Qué recomendación debe emitir el consultor PROA hoy?</div>
-                    </div>
-                    <div class="space-y-2">
-                        <button onclick="answerSim(3, 33)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            A) Dar por finalizado el ciclo antibiótico hoy al completar 7 días de evolución favorable.
-                        </button>
-                        <button onclick="answerSim(3, 0)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">
-                            B) Indicar 14 días obligatorios de Ceftazidima/Avibactam.
-                        </button>
+                        <button onclick="answerSim(2)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">A) Ajustar a Ceftazidima / Avibactam 2.5g IV c/8h (infusión 3h) o Meropenem / Vaborbactam.</button>
+                        <button onclick="answerSim(2)" class="w-full text-left p-3 border rounded-lg text-xs hover:bg-slate-50 font-medium transition">B) Mantener Ertapenem en monoterapia.</button>
                     </div>
                 `;
             } else {
                 container.innerHTML = `
                     <div class="p-6 bg-emerald-50 border border-emerald-200 rounded-xl text-center space-y-4">
                         <i class="fa-solid fa-trophy text-4xl text-emerald-600"></i>
-                        <h3 class="text-lg font-bold text-emerald-950">¡Simulación Completada!</h3>
-                        <p class="text-sm text-emerald-800">Has obtenido una calificación de <strong>${currentSimScore} / 100</strong> en la toma de decisiones asistenciales PROA.</p>
-                        <button onclick="resetSim()" class="px-4 py-2 bg-emerald-600 text-white font-medium text-xs rounded-lg hover:bg-emerald-700 transition">Reiniciar Caso Clínico</button>
+                        <h3 class="text-lg font-bold text-emerald-950">¡Simulación de Guardia Completada!</h3>
+                        <p class="text-sm text-emerald-800">Has analizado exitosamente el caso clínico con criterios PROA.</p>
+                        <button onclick="resetSim()" class="px-4 py-2 bg-emerald-600 text-white font-medium text-xs rounded-lg hover:bg-emerald-700 transition">Reiniciar Caso</button>
                     </div>
                 `;
             }
         }
 
-        window.answerSim = function(step, points) {
-            currentSimScore += points;
-            document.getElementById('sim-score').innerText = `Puntuación: ${currentSimScore} / 100`;
+        window.answerSim = function(step) {
             simStep++;
             loadSimulatorCase();
         }
 
         window.resetSim = function() {
-            currentSimScore = 0;
             simStep = 1;
-            document.getElementById('sim-score').innerText = `Puntuación: 0 / 100`;
             loadSimulatorCase();
         }
 
@@ -911,7 +637,6 @@
             const container = document.getElementById('quiz-questions-container');
             if (!container) return;
             container.innerHTML = '';
-
             let answeredCount = 0;
 
             quizQuestionsData.forEach((q, idx) => {
@@ -921,13 +646,8 @@
                 q.options.forEach(opt => {
                     let btnStyle = "bg-white border-slate-200 hover:bg-slate-50 text-slate-700";
                     if (q.userAnswer === opt) {
-                        if (q.userIsCorrect) {
-                            btnStyle = "bg-emerald-50 border-emerald-500 text-emerald-900 font-bold";
-                        } else {
-                            btnStyle = "bg-rose-50 border-rose-500 text-rose-900 font-bold";
-                        }
-                    } else if (q.userAnswer && opt === q.correctAnswer) {
-                        btnStyle = "bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold";
+                        if (q.userIsCorrect) btnStyle = "bg-emerald-50 border-emerald-500 text-emerald-900 font-bold";
+                        else btnStyle = "bg-rose-50 border-rose-500 text-rose-900 font-bold";
                     }
 
                     optionsHTML += `
@@ -955,35 +675,45 @@
 
         window.answerQuizQuestion = function(idx, chosenOpt) {
             const q = quizQuestionsData[idx];
+            const isCorrect = (chosenOpt === q.correctAnswer);
             q.userAnswer = chosenOpt;
-            q.userIsCorrect = (chosenOpt === q.correctAnswer);
+            q.userIsCorrect = isCorrect;
             renderQuiz();
         };
+
+        // Modal Controls
+        window.openWaitingListModal = function() {
+            document.getElementById('waiting-list-modal').classList.remove('hidden');
+        }
+        window.closeWaitingListModal = function() {
+            document.getElementById('waiting-list-modal').classList.add('hidden');
+        }
+        window.submitWaitingList = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('wl-name').value;
+            const email = document.getElementById('wl-email').value;
+            const hospital = document.getElementById('wl-hospital').value;
+            if(!name || !email || !hospital) {
+                return;
+            }
+            closeWaitingListModal();
+            showToast("✓ ¡Inscripción a la Lista de Espera Cliente registrada con éxito!");
+        }
 
         function showToast(msg) {
             const toast = document.createElement('div');
             toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl z-50 text-xs font-bold transition flex items-center space-x-2";
             toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i><span>${msg}</span>`;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+            setTimeout(() => toast.remove(), 3500);
         }
 
-        window.openUpgradeModal = function() {
-            document.getElementById('upgrade-modal').classList.remove('hidden');
-        };
-        window.closeUpgradeModal = function() {
-            document.getElementById('upgrade-modal').classList.add('hidden');
-        };
-        window.simulateStripeCheckout = function() {
-            closeUpgradeModal();
-            showToast("✓ Suscripción PRO simulada con éxito. ¡Funciones Pro habilitadas!");
-        };
-
         window.addEventListener('DOMContentLoaded', () => {
-            renderDrugs(antibioticsData);
+            renderCatalog(catalogData);
             calculateCrCl();
             loadSimulatorCase();
             renderQuiz();
+            updateMatrixResult();
         });
     </script>
 </body>
