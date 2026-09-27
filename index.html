@@ -240,7 +240,7 @@
 
     </main>
 
-    <!-- MODAL LISTA DE ESPERA CLIENTE -->
+    <!-- MODAL LISTA DE ESPERA CLIENTE (CON FORMSPREE) -->
     <div id="waiting-list-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 relative border border-slate-200">
             <button onclick="closeWaitingListModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600">
@@ -256,18 +256,19 @@
                 </p>
             </div>
 
-            <form onsubmit="submitWaitingList(event)" class="space-y-3">
+            <!-- Formulario conectado a Formspree (reemplaza tuformid por tu ID real de formspree.io) -->
+            <form action="https://formspree.io/f/tuformid" method="POST" onsubmit="submitWaitingList(event)" class="space-y-3">
                 <div>
                     <label class="block text-xs font-medium text-slate-700 mb-1">Nombre Completo</label>
-                    <input type="text" id="wl-name" required placeholder="Ej. Dr. Carlos Mendoza" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
+                    <input type="text" name="nombre" id="wl-name" required placeholder="Ej. Dr. Carlos Mendoza" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-slate-700 mb-1">Correo Electrónico Institucional</label>
-                    <input type="email" id="wl-email" required placeholder="correo@hospital.com" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
+                    <input type="email" name="email" id="wl-email" required placeholder="correo@hospital.com" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-slate-700 mb-1">Hospital / Servicio</label>
-                    <input type="text" id="wl-hospital" required placeholder="Ej. Hospital General - UCI" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
+                    <input type="text" name="hospital" id="wl-hospital" required placeholder="Ej. Hospital General - UCI" class="w-full p-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-sky-500">
                 </div>
                 <button type="submit" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-check text-xs"></i>
@@ -277,10 +278,36 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 text-center mt-auto">
-        <div class="max-w-7xl mx-auto px-4">
-            PROA Pro | Programa de Optimización del Uso de Antimicrobianos & Acceso Total Abierto
+    <!-- FOOTER INSTITUCIONAL & CONTACTO COMERCIAL -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-800 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 bg-sky-600 rounded-lg text-white">
+                        <i class="fa-solid fa-capsules text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-white text-sm">PROA Pro | Programa de Optimización del Uso de Antimicrobianos</span>
+                        <p class="text-[11px] text-slate-500">Plataforma de Soporte Clínico e Implementación Institucional</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 text-xs">
+                    <a href="mailto:sdcommunitymanagers@gmail.com" class="hover:text-sky-400 transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-envelope text-sky-500"></i>
+                        <span>sdcommunitymanagers@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/5215500000000" target="_blank" class="hover:text-emerald-400 transition flex items-center space-x-1.5">
+                        <i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i>
+                        <span>Atención Comercial / WhatsApp</span>
+                    </a>
+                    <button onclick="openWaitingListModal()" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg transition">
+                        Solicitar Demo para Hospitales
+                    </button>
+                </div>
+            </div>
+            <div class="text-center text-[11px] text-slate-500">
+                PROA Pro © 2026 · Todos los derechos reservados. Diseñado para optimización antimicrobiana en servicios de salud.
+            </div>
         </div>
     </footer>
 
@@ -517,7 +544,6 @@
                 rec.notes = 'Daptomicina es de elección en bacteremia por SARM; Linezolid penetra mejor en pulmón.';
             }
 
-            // Site-specific tailoring modifier note
             let siteNote = "";
             if (site === 'pneumonia') siteNote = "<strong>Foco Pulmonar:</strong> Verificar penetración alveolar y evitar daptomicina (inactivada por surfactante).";
             else if (site === 'itu') siteNote = "<strong>Foco Urinario:</strong> Considerar eliminación renal del fármaco (evitar tigeciclina/eravaciclina en ITU baja/alta).";
@@ -689,15 +715,8 @@
             document.getElementById('waiting-list-modal').classList.add('hidden');
         }
         window.submitWaitingList = function(e) {
-            e.preventDefault();
-            const name = document.getElementById('wl-name').value;
-            const email = document.getElementById('wl-email').value;
-            const hospital = document.getElementById('wl-hospital').value;
-            if(!name || !email || !hospital) {
-                return;
-            }
             closeWaitingListModal();
-            showToast("✓ ¡Inscripción a la Lista de Espera Cliente registrada con éxito!");
+            showToast("✓ ¡Inscripción a la Lista de Espera Cliente enviada con éxito!");
         }
 
         function showToast(msg) {
